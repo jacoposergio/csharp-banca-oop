@@ -8,14 +8,14 @@
 public class Prestito
 {
     public int Id { get; set; }
-    public String Intestatario { get; set; }
+    public Cliente Intestatario { get; set; }
     public int Ammontare { get; set; }
     public int ValoreRata { get; set; }
     public DateOnly DataInizio { get; set; }
     public DateOnly DataFine { get; set; }
 
     //prestito in partenza dalla data specificata
-    public Prestito(int id, string intestatario, int ammontare, int valoreRata, DateOnly dataInizio, DateOnly dataFine)
+    public Prestito(int id, Cliente intestatario, int ammontare, int valoreRata, DateOnly dataInizio, DateOnly dataFine)
     {
         Id = id;
         Intestatario = intestatario;

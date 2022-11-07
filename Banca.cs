@@ -26,6 +26,13 @@ public class Banca
         Clienti.Add(cliente1);
         Clienti.Add(cliente2);
         Clienti.Add(cliente3);
+
+        Prestito prestito1 = new Prestito(6253, cliente1 , 233, 25, DateOnly.Parse("03/07/2022") , DateOnly.Parse("22/12/2022"));
+        Prestito prestito2 = new Prestito(6253, cliente2, 133, 33, DateOnly.Parse("05/08/2021"), DateOnly.Parse("20/02/2022"));
+        Prestito prestito3 = new Prestito(6253, cliente3, 433, 56, DateOnly.Parse("11/06/2022"), DateOnly.Parse("11/11/2022"));
+        Prestiti.Add(prestito1);
+        Prestiti.Add(prestito2);
+        Prestiti.Add(prestito3);
     }
 
     public bool AggiungiCliente(Cliente cliente)
@@ -92,13 +99,15 @@ public class Banca
         return null;
     }
 
-    public List<Prestito> RicercaPrestito(string codiceFiscale)
+    public Prestito RicercaPrestito(string codiceFiscale)
     {
-        List<Prestito> trovati = new List<Prestito>();
+        foreach (Prestito prestito in Prestiti)
+        {
+            if (prestito.Intestatario.CodiceFiscale == codiceFiscale)
+                return prestito;
+        }
 
-
-
-        return trovati;
+        return null;
     }
 
     public int AmmontareTotalePrestitiCliente(string codiceFiscale)
