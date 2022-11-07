@@ -49,6 +49,40 @@ intesa.AvviaBanca();
 //intesa.CercaTuttiClienti();
 
 //ricerca cliente: 
+//Console.WriteLine("Premi 1 per cercare per nome e cognome, 2 per ricercare per codice fiscale");
+//int risposta = Convert.ToInt32(Console.ReadLine());
+
+//switch (risposta)
+//{
+//    case 1:
+//        Console.WriteLine("Inserisci nome cliente: ");
+//        string rispostaNome = Console.ReadLine();
+//        Console.WriteLine("Inserisci cognome cliente: ");
+//        string rispostaCognome = Console.ReadLine();
+//        Cliente clienteTrovato = intesa.RicercaCliente(rispostaNome, rispostaCognome);
+//        if (clienteTrovato != null)
+//            Console.WriteLine("Nome: " + clienteTrovato.Nome);
+//        Console.WriteLine("Cognome: " + clienteTrovato.Cognome);
+//        Console.WriteLine("Codice fiscale: " + clienteTrovato.CodiceFiscale);
+//        Console.WriteLine("Stipendio: " + clienteTrovato.Stipendio + "$ al mese");
+//        break;
+//    case 2:
+//        Console.WriteLine("Inserisci codice fiscale cliente: ");
+//        string rispostaCodiceFiscale = Console.ReadLine();
+//        Cliente clienteTrovato2 = intesa.RicercaCliente(rispostaCodiceFiscale);
+//        if (clienteTrovato2 != null)
+//            Console.WriteLine("Nome: " + clienteTrovato2.Nome);
+//            Console.WriteLine("Cognome: " + clienteTrovato2.Cognome);
+//            Console.WriteLine("Codice fiscale: " + clienteTrovato2.CodiceFiscale);
+//            Console.WriteLine("Stipendio: " + clienteTrovato2.Stipendio + "$ al mese");
+//        break;
+//    default:
+//        Console.WriteLine("Sei capace di premere un tasto?");
+//        break;
+//}
+
+//modifica cliente: 
+Console.WriteLine("Cerca cliente da modificare");
 Console.WriteLine("Premi 1 per cercare per nome e cognome, 2 per ricercare per codice fiscale");
 int risposta = Convert.ToInt32(Console.ReadLine());
 
@@ -61,23 +95,32 @@ switch (risposta)
         string rispostaCognome = Console.ReadLine();
         Cliente clienteTrovato = intesa.RicercaCliente(rispostaNome, rispostaCognome);
         if (clienteTrovato != null)
-            Console.WriteLine("Nome: " + clienteTrovato.Nome);
-        Console.WriteLine("Cognome: " + clienteTrovato.Cognome);
-        Console.WriteLine("Codice fiscale: " + clienteTrovato.CodiceFiscale);
-        Console.WriteLine("Stipendio: " + clienteTrovato.Stipendio + "$ al mese");
-        break;
+            Console.WriteLine("Inserisci nuovo nome: ");
+            string rispostaNuovoNome = Console.ReadLine();
+             if (rispostaNuovoNome != "")
+               clienteTrovato.Nome = rispostaNuovoNome;
+            Console.WriteLine("Inserisci nuovo cognome: ");
+            string rispostaNuovoCognome = Console.ReadLine();
+            if (rispostaNuovoCognome != "")
+            clienteTrovato.Cognome = rispostaNuovoCognome;
+            intesa.CercaTuttiClienti();
+            break;
     case 2:
         Console.WriteLine("Inserisci codice fiscale cliente: ");
         string rispostaCodiceFiscale = Console.ReadLine();
         Cliente clienteTrovato2 = intesa.RicercaCliente(rispostaCodiceFiscale);
+
         if (clienteTrovato2 != null)
-            Console.WriteLine("Nome: " + clienteTrovato2.Nome);
-            Console.WriteLine("Cognome: " + clienteTrovato2.Cognome);
-            Console.WriteLine("Codice fiscale: " + clienteTrovato2.CodiceFiscale);
-            Console.WriteLine("Stipendio: " + clienteTrovato2.Stipendio + "$ al mese");
-        break;
-    default:
-        Console.WriteLine("Sei capace di premere un tasto?");
+            Console.WriteLine("Inserisci nuovo nome: ");
+            string rispostaNuovoNome2 = Console.ReadLine();
+            clienteTrovato2.Nome = rispostaNuovoNome2;
+            Console.WriteLine("Inserisci nuovo cognome: ");
+            string rispostaNuovoCognome2 = Console.ReadLine();
+            clienteTrovato2.Cognome = rispostaNuovoCognome2;
+            intesa.CercaTuttiClienti();
+            break;
+        default:
+             Console.WriteLine("Sei capace di premere un tasto?");
         break;
 }
 

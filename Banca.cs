@@ -79,6 +79,7 @@ public class Banca
         return null;
     }
 
+
     public Cliente RicercaCliente(string nome, string cognome)
     {
 
@@ -143,7 +144,7 @@ public class Banca
             Console.WriteLine("\r\nTutti i clienti: \r\n ");
             foreach (Cliente item in Clienti)
             {
-                Console.WriteLine("\r\n Nome: " + item.Nome);
+                Console.WriteLine("\r\nNome: " + item.Nome);
                 Console.WriteLine("Cognome: " + item.Cognome);
                 Console.WriteLine("Codice Fiscale: " + item.CodiceFiscale);
                 Console.WriteLine("Stipendio: " + item.Stipendio + " all'anno");
