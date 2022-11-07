@@ -35,18 +35,52 @@ Banca intesa = new Banca("Intesa San Paolo");
 Console.WriteLine("Sistema amministrazione banca " + intesa.Nome);
 intesa.AvviaBanca();
 
-//ricerca utente: 
-Console.WriteLine("Nome: ");
-string nome = Console.ReadLine();
-Console.WriteLine("cognome: ");
-string cognome = Console.ReadLine();
-Console.WriteLine("Codice fiscale: ");
-string codiceFiscale = Console.ReadLine();
-Console.WriteLine("Stpendio: ");
-int stipendio = Convert.ToInt32(Console.ReadLine());
+//registrazione cliente: 
+//Console.WriteLine("Nome: ");
+//string nome = Console.ReadLine();
+//Console.WriteLine("cognome: ");
+//string cognome = Console.ReadLine();
+//Console.WriteLine("Codice fiscale: ");
+//string codiceFiscale = Console.ReadLine();
+//Console.WriteLine("Stpendio: ");
+//int stipendio = Convert.ToInt32(Console.ReadLine());
 
-intesa.AggiungiCliente(nome, cognome,codiceFiscale,stipendio);
-intesa.CercaTuttiClienti();
+//intesa.AggiungiCliente(nome, cognome,codiceFiscale,stipendio);
+//intesa.CercaTuttiClienti();
+
+//ricerca cliente: 
+Console.WriteLine("Premi 1 per cercare per nome e cognome, 2 per ricercare per codice fiscale");
+int risposta = Convert.ToInt32(Console.ReadLine());
+
+switch (risposta)
+{
+    case 1:
+        Console.WriteLine("Inserisci nome cliente: ");
+        string rispostaNome = Console.ReadLine();
+        Console.WriteLine("Inserisci cognome cliente: ");
+        string rispostaCognome = Console.ReadLine();
+        Cliente clienteTrovato = intesa.RicercaCliente(rispostaNome, rispostaCognome);
+        if (clienteTrovato != null)
+            Console.WriteLine("Nome: " + clienteTrovato.Nome);
+        Console.WriteLine("Cognome: " + clienteTrovato.Cognome);
+        Console.WriteLine("Codice fiscale: " + clienteTrovato.CodiceFiscale);
+        Console.WriteLine("Stipendio: " + clienteTrovato.Stipendio + "$ al mese");
+        break;
+    case 2:
+        Console.WriteLine("Inserisci codice fiscale cliente: ");
+        string rispostaCodiceFiscale = Console.ReadLine();
+        Cliente clienteTrovato2 = intesa.RicercaCliente(rispostaCodiceFiscale);
+        if (clienteTrovato2 != null)
+            Console.WriteLine("Nome: " + clienteTrovato2.Nome);
+            Console.WriteLine("Cognome: " + clienteTrovato2.Cognome);
+            Console.WriteLine("Codice fiscale: " + clienteTrovato2.CodiceFiscale);
+            Console.WriteLine("Stipendio: " + clienteTrovato2.Stipendio + "$ al mese");
+        break;
+    default:
+        Console.WriteLine("Sei capace di premere un tasto?");
+        break;
+}
+
 
 
 //aggiunta di un prestito

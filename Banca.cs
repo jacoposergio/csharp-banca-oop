@@ -12,21 +12,20 @@ public class Banca
     List<Cliente> Clienti { get; set; }
     List<Prestito> Prestiti { get; set; }
 
-    public void AvviaBanca()
-    {
-        Cliente cliente1 = new Cliente("Rossi", "Mario", "rssmr373fr7", 3000);
-        Cliente cliente2 = new Cliente("Verdi", "Antonio", "vrdat5737372h", 10000);
-        Cliente cliente3 = new Cliente("Bianchi", "Luca", "bnclc6373fr7", 200000);
-        Clienti.Add(cliente1);
-        Clienti.Add(cliente2);
-        Clienti.Add(cliente3);
-    }
-
-    public Banca(string Nome)
+      public Banca(string Nome)
     {
         this.Nome = Nome;
         Clienti = new List<Cliente>();
         Prestiti = new List<Prestito>();
+    }
+    public void AvviaBanca()
+    {
+        Cliente cliente1 = new Cliente("Mario", "Rossi", "rssmr373fr7", 3000);
+        Cliente cliente2 = new Cliente("Antonio", "Verdi", "vrdat5737372h", 10000);
+        Cliente cliente3 = new Cliente("Luca", "Bianchi", "bnclc6373fr7", 200000);
+        Clienti.Add(cliente1);
+        Clienti.Add(cliente2);
+        Clienti.Add(cliente3);
     }
 
     public bool AggiungiCliente(Cliente cliente)
@@ -74,6 +73,18 @@ public class Banca
         foreach (Cliente cliente in Clienti)
         {
             if (cliente.CodiceFiscale == codiceFiscale)
+                return cliente;
+        }
+
+        return null;
+    }
+
+    public Cliente RicercaCliente(string nome, string cognome)
+    {
+
+        foreach (Cliente cliente in Clienti)
+        {
+            if (cliente.Nome == nome && cliente.Cognome == cognome)
                 return cliente;
         }
 
