@@ -27,12 +27,14 @@ public class Banca
         Clienti.Add(cliente2);
         Clienti.Add(cliente3);
 
-        Prestito prestito1 = new Prestito(6253, cliente1 , 233, 25, DateOnly.Parse("03/07/2022") , DateOnly.Parse("22/12/2022"));
-        Prestito prestito2 = new Prestito(6253, cliente2, 133, 33, DateOnly.Parse("05/08/2021"), DateOnly.Parse("20/02/2022"));
-        Prestito prestito3 = new Prestito(6253, cliente3, 433, 56, DateOnly.Parse("11/06/2022"), DateOnly.Parse("11/11/2022"));
+        Prestito prestito1 = new Prestito(102, cliente1 , 233, 25, DateOnly.Parse("03/07/2022") , DateOnly.Parse("22/12/2022"));
+        Prestito prestito2 = new Prestito(104, cliente2, 133, 33, DateOnly.Parse("05/08/2021"), DateOnly.Parse("20/02/2022"));
+        Prestito prestito3 = new Prestito(106, cliente3, 433, 56, DateOnly.Parse("11/06/2022"), DateOnly.Parse("11/11/2022"));
+        Prestito prestito4 = new Prestito(108, cliente1, 333, 16, DateOnly.Parse("01/06/2019"), DateOnly.Parse("10/11/2022"));
         Prestiti.Add(prestito1);
         Prestiti.Add(prestito2);
         Prestiti.Add(prestito3);
+        Prestiti.Add(prestito4);
     }
 
     public bool AggiungiCliente(Cliente cliente)
@@ -113,6 +115,11 @@ public class Banca
     public int AmmontareTotalePrestitiCliente(string codiceFiscale)
     {
         int ammontare = 0; //metterò il conteggio
+     
+        foreach (Prestito prestito in Prestiti)
+        {
+            ammontare += prestito.Ammontare;
+        }
 
         //conteggio...
 
@@ -128,7 +135,7 @@ public class Banca
         return rateMancanti;
     }
 
-    public void StampaProspettoClienti()
+    public void StampaProspettoClienti(string codiceFiscale)
     {
         //stampare per tutti i clienti
     }
@@ -138,9 +145,11 @@ public class Banca
         //stampa per tutti i prestiti
     }
 
-    public void AggiungiPrestito(Prestito nuovoPrestito)
+    public void AggiungiPrestito(Prestito prestito)
+    //public void AggiungiPrestito(int id, Cliente intestatario, int ammontare, int valoreRata, DateOnly dataInizio, DateOnly dataFine)
     {
-
+        //Prestito prestito = new Prestito(id, intestatario, ammontare, valoreRata, dataInizio, dataFine);
+        Prestiti.Add(prestito);
     }
 
     //FUNZIONI DI DEBUG 
@@ -157,6 +166,27 @@ public class Banca
                 Console.WriteLine("Cognome: " + item.Cognome);
                 Console.WriteLine("Codice Fiscale: " + item.CodiceFiscale);
                 Console.WriteLine("Stipendio: " + item.Stipendio + " all'anno");
+            }
+        }
+        else
+            Console.WriteLine("nessun cliente trovato");
+    }
+
+    public void StampaTuttiPrestiti()
+    {
+        bool isEmpty = !Clienti.Any();
+        if (!isEmpty)
+        {
+            Console.WriteLine("\r\nTutti i prestiti: \r\n ");
+            foreach (Prestito item in Prestiti)
+            {
+                Console.WriteLine("\r\nL'Id prestito: " + item.Id);
+                Console.WriteLine("Nome: " + item.Intestatario.Nome);
+                Console.WriteLine("Cognome: " + item.Intestatario.Cognome);
+                Console.WriteLine("L'ammontare del prestito è: : " + item.Ammontare + "$");
+                Console.WriteLine("Il valore della rata è: " + item.ValoreRata + "$ all'anno");
+                Console.WriteLine("Data inizio: : " + item.DataInizio);
+                Console.WriteLine("Data fine: : " + item.DataFine);
             }
         }
         else

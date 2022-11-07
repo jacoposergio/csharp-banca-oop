@@ -82,70 +82,71 @@ intesa.AvviaBanca();
 //}
 
 //modifica cliente: 
-Console.WriteLine("Cerca cliente da modificare");
-Console.WriteLine("Premi 1 per cercare per nome e cognome, 2 per ricercare per codice fiscale");
-int risposta = Convert.ToInt32(Console.ReadLine());
+//Console.WriteLine("Cerca cliente da modificare");
+//Console.WriteLine("Premi 1 per cercare per nome e cognome, 2 per ricercare per codice fiscale");
+//int risposta = Convert.ToInt32(Console.ReadLine());
 
-switch (risposta)
-{
-    case 1:
-        Console.WriteLine("Inserisci nome cliente: ");
-        string rispostaNome = Console.ReadLine();
-        Console.WriteLine("Inserisci cognome cliente: ");
-        string rispostaCognome = Console.ReadLine();
-        Cliente clienteTrovato = intesa.RicercaCliente(rispostaNome, rispostaCognome);
-        if (clienteTrovato != null)
-            Console.WriteLine("Inserisci nuovo nome: ");
-            string rispostaNuovoNome = Console.ReadLine();
-             if (rispostaNuovoNome != "")
-               clienteTrovato.Nome = rispostaNuovoNome;
-            Console.WriteLine("Inserisci nuovo cognome: ");
-            string rispostaNuovoCognome = Console.ReadLine();
-            if (rispostaNuovoCognome != "")
-            clienteTrovato.Cognome = rispostaNuovoCognome;
-            intesa.CercaTuttiClienti();
-            break;
-    case 2:
-        Console.WriteLine("Inserisci codice fiscale cliente: ");
-        string rispostaCodiceFiscale = Console.ReadLine();
-        Cliente clienteTrovato2 = intesa.RicercaCliente(rispostaCodiceFiscale);
+//switch (risposta)
+//{
+//    case 1:
+//        Console.WriteLine("Inserisci nome cliente: ");
+//        string rispostaNome = Console.ReadLine();
+//        Console.WriteLine("Inserisci cognome cliente: ");
+//        string rispostaCognome = Console.ReadLine();
+//        Cliente clienteTrovato = intesa.RicercaCliente(rispostaNome, rispostaCognome);
+//        if (clienteTrovato != null)
+//            Console.WriteLine("Inserisci nuovo nome: ");
+//            string rispostaNuovoNome = Console.ReadLine();
+//             if (rispostaNuovoNome != "")
+//               clienteTrovato.Nome = rispostaNuovoNome;
+//            Console.WriteLine("Inserisci nuovo cognome: ");
+//            string rispostaNuovoCognome = Console.ReadLine();
+//            if (rispostaNuovoCognome != "")
+//            clienteTrovato.Cognome = rispostaNuovoCognome;
+//            intesa.CercaTuttiClienti();
+//            break;
+//    case 2:
+//        Console.WriteLine("Inserisci codice fiscale cliente: ");
+//        string rispostaCodiceFiscale = Console.ReadLine();
+//        Cliente clienteTrovato2 = intesa.RicercaCliente(rispostaCodiceFiscale);
 
-        if (clienteTrovato2 != null)
-            Console.WriteLine("Inserisci nuovo nome: ");
-            string rispostaNuovoNome2 = Console.ReadLine();
-            clienteTrovato2.Nome = rispostaNuovoNome2;
-            Console.WriteLine("Inserisci nuovo cognome: ");
-            string rispostaNuovoCognome2 = Console.ReadLine();
-            clienteTrovato2.Cognome = rispostaNuovoCognome2;
-            intesa.CercaTuttiClienti();
-            break;
-        default:
-             Console.WriteLine("Sei capace di premere un tasto?");
-        break;
-}
+//        if (clienteTrovato2 != null)
+//            Console.WriteLine("Inserisci nuovo nome: ");
+//            string rispostaNuovoNome2 = Console.ReadLine();
+//            clienteTrovato2.Nome = rispostaNuovoNome2;
+//            Console.WriteLine("Inserisci nuovo cognome: ");
+//            string rispostaNuovoCognome2 = Console.ReadLine();
+//            clienteTrovato2.Cognome = rispostaNuovoCognome2;
+//            intesa.CercaTuttiClienti();
+//            break;
+//        default:
+//             Console.WriteLine("Sei capace di premere un tasto?");
+//        break;
+//}
+
 
 
 
 //aggiunta di un prestito
-// 1. chiedo all'utente di cercare il cliente su cui si vuole creare un prestito
-//Console.WriteLine("Creazione di un nuovo prestito");
-//Console.WriteLine();
-//Console.WriteLine("Inserisci il codice fiscale:");
-//string codiceFiscale = Console.ReadLine();
+ //1. chiedo all'utente di cercare il cliente su cui si vuole creare un prestito
+Console.WriteLine("Creazione di un nuovo prestito");
+Console.WriteLine();
+Console.WriteLine("Inserisci il codice fiscale:");
+string codiceFiscale = Console.ReadLine();
 
-//Cliente esistente = intesa.RicercaCliente(codiceFiscale);
+Cliente esistente = intesa.RicercaCliente(codiceFiscale);
 
-//if (esistente == null)
-//{
-//    Console.WriteLine("errore: Cliente non trovato!");
-//}
-//else
-//{
+if (esistente == null)
+{
+    Console.WriteLine("errore: Cliente non trovato!");
+}
+else
+{
 
-//    Console.WriteLine("Ammontare del prestito: ");
-//    int ammontarePrestito = Convert.ToInt32(Console.ReadLine());
-//Prestito nuovoPrestito = new Prestito(0, ammontarePrestito, 0, new DateOnly(), esistente);
+    Console.WriteLine("Ammontare del prestito: ");
+    int ammontarePrestito = Convert.ToInt32(Console.ReadLine());
+    Prestito nuovoPrestito = new Prestito(0, esistente, 0,0, new DateOnly(), new DateOnly());
 
-
-//intesa.AggiungiPrestito(nuovoPrestito);
-//}
+    intesa.AggiungiPrestito(nuovoPrestito);
+    intesa.StampaTuttiPrestiti();
+}
